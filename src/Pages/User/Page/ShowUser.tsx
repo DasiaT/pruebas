@@ -1,5 +1,5 @@
 import { Suspense, useState } from "react";
-import { IUser, IUserFilters } from "../Interface/IUser";
+import { IUserFilters } from "../Interface/IUser";
 import MUIDataTable from "mui-datatables";
 import columnsUser from "../Tablet/Colums";
 import { useGetUserQuery } from "../../../Store/User";
@@ -13,7 +13,7 @@ function ShowUser() {
 
  //const data = apiData.read();
  
-  const [query, setQuery] = useState<IUserFilters>({
+  const [query, ] = useState<IUserFilters>({
     username: '',
     password: ''
   });

@@ -17,9 +17,10 @@ const Bottom_Navigation: React.FC = () => {
 
   const [value, setValue] = useState<number>(0);
 
-  const handleChange = (_event: React.ChangeEvent<{}>, newValue: number) => {
+  const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
+
 
   const pages: IMenu[] = [
     { label: 'Inventario', icon: <StorefrontTwoToneIcon />, path: '/', content: '' },

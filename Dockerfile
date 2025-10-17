@@ -1,23 +1,19 @@
-# Usa la imagen oficial de Node con la versión deseada
-FROM node:20
+FROM node:22-alpine AS build
 
-# Establece el directorio de trabajo en /app
 WORKDIR /app
 
-# Copia el archivo package.json y package-lock.json (si existe)
-COPY package*.json ./
+RUN apk add --no-cache libc6-compat
 
-# Instala las dependencias
-RUN yarn install
+COPY package.json yarn.lock* ./
+RUN yarn install --frozen-lockfile
 
-# Copia el resto de la aplicación
 COPY . .
+RUN yarn build
 
-# Compila la aplicación TypeScript
-RUN yarn run build
+FROM node:22-alpine
 
-# Expone el puerto 3000
+WORKDIR /app
+COPY --from=build /app /app
+
 EXPOSE 8080
-
-# Inicia la aplicación cuando se ejecute el contenedor
 CMD ["yarn", "start"]

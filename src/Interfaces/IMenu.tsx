@@ -1,5 +1,3 @@
-
-
 export interface IMenu {
     label: string;
     icon: React.ReactElement;
